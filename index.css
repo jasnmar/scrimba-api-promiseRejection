@@ -33,6 +33,15 @@ div.top {
 h1.time {
     text-align: center;
 }
+.crypto-thumbnail {
+    height: 25px;
+    width: 25px;
+    margin: 5px
+}
+.crypto-line {
+    display: flex;
+    align-items: center;
+}
 
 /*
 Challenge: Set up flexbox so the three elements are
