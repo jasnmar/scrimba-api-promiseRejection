@@ -1,0 +1,44 @@
+{
+    "coord": {
+        "lon": -71.3654,
+        "lat": 43.2898
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 286.45,
+        "feels_like": 285.32,
+        "temp_min": 284.45,
+        "temp_max": 288.84,
+        "pressure": 1018,
+        "humidity": 57
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 1.79,
+        "deg": 301,
+        "gust": 4.92
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1713278314,
+    "sys": {
+        "type": 2,
+        "id": 2005864,
+        "country": "US",
+        "sunrise": 1713261635,
+        "sunset": 1713310155
+    },
+    "timezone": -14400,
+    "id": 5091251,
+    "name": "Pittsfield",
+    "cod": 200
+}

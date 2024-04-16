@@ -13,7 +13,6 @@ function sgetBackgroundImage() {
 
 
 async function getBackgroundImage() {
-    console.log('get background image')
     let res
     let data
     try {
@@ -111,13 +110,9 @@ function renderCryptoData(dataArray) {
     cryptoDiv.innerHTML = cryptoHTML
 
 }
-setupPage()
 
-function setupPage() {
-    getBackgroundImage()
-    updateTime()
-    getLocation()
-}
+
+
 
 document.getElementById("get-crypto").addEventListener('click', getCryptoData)
 //sgetBackgroundImage()
@@ -135,16 +130,55 @@ function updateTime() {
 
 setInterval(updateTime, 1000)
 
-/**
- * Challenge: Learn how to access the user's coordinates
- * by using the Geolocation Web API!
- * 
- * Log the user's position to the console.
- */
-function getLocation() {
 
-    navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude, position.coords.longitude);
+function locateCurrentPosition() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log(position);
+                resolve(position);
+            },
+            (error) => {
+                console.log(error.message);
+                reject(error);
+            }
+        );
     });
 }
 
+
+async function getWeather() {
+    const pos = await locateCurrentPosition()
+    const lat = pos.coords.latitude
+    const lon = pos.coords.longitude
+    console.log('[lat, lon]', [lat, lon])
+    
+    const res = 
+        await fetch(`
+            https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}`)
+    const weather = await res.json()
+    const wIconId = weather.weather[0].icon
+    const iconURL = `https://openweathermap.org/img/wn/${wIconId}@2x.png`
+    const weatherDiv = document.getElementById("weather")
+    weatherDiv.innerHTML= `
+        <img src="${iconURL}">`
+    console.log('weather:', weather)
+}
+/**
+ * Challenge: Display the weather icon as an <img />
+ * inside the <div id="weather">
+ * 
+ * This site shows an example URL for the icon:
+ * https://openweathermap.org/weather-conditions
+ * 
+ * Note: the weather icon is found instead data.weather, which is
+ * an array of weather for that area. You can just access the first
+ * item in that array to get the icon ID.
+ */
+function setupPage() {
+    getBackgroundImage()
+    updateTime()
+    getWeather()
+}
+
+setupPage()
