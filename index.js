@@ -13,8 +13,8 @@ async function getBackgroundImage() {
     const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=technology")
     const data = await res.json()
     document.body.style.backgroundImage = `url(${data.links.download})`
-    const creditText = document.createElement("h1")
-    creditText.textContent = data.user.name
+    const creditText = document.createElement("p")
+    creditText.textContent = "Image By:" + data.user.name
     document.getElementById("author").appendChild(creditText)
     console.log('data', data)
 }
