@@ -36,13 +36,22 @@ h1.time {
 .crypto-thumbnail {
     height: 25px;
     width: 25px;
-    margin: 5px
-}
-.crypto-line {
-    display: flex;
-    align-items: center;
 }
 
+.crypto-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    gap: 5px;
+}
+p {
+    margin:0;
+}
+.crypto-price > p {
+    margin: 0 40px;
+    font-size: .7rem;
+}
 /*
 Challenge: Set up flexbox so the three elements are
 evenly spread vertically on the screen (don't worry
