@@ -32,6 +32,7 @@ div.top {
 
 h1.time {
     text-align: center;
+    font-size: 5rem;
 }
 .crypto-thumbnail {
     height: 25px;
@@ -63,10 +64,9 @@ p {
 .location {
     text-align: right;
     margin-right: 10px;
+    font-size: 2rem;
 }
-/*
-Challenge: Set up flexbox so the three elements are
-evenly spread vertically on the screen (don't worry
-about the horizontal alignment yet)
-*/
-
+#author {
+    margin:10px;
+    font-size: 2rem;
+}

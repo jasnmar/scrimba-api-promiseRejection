@@ -158,7 +158,7 @@ async function getWeather() {
             https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`)
     const weather = await res.json()
     const wIconId = weather.weather[0].icon
-    const iconURL = `https://openweathermap.org/img/wn/${wIconId}@2x.png`
+    const iconURL = `https://openweathermap.org/img/wn/${wIconId}.png`
     const weatherDiv = document.getElementById("weather")
     const cTemp = weather.main.temp
     const cLoc = weather.name
