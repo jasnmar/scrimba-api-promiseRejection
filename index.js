@@ -1,25 +1,43 @@
-/**
- * Challenge part 2: Display the image's author
- * 
- * With the data you've already fetched, display the name of the 
- * image author on the page. They show up as the "user" in the data
- * returned from the API.
- * 
- * Don't worry about positioning the author in the lower-left yet.
- */
+fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        document.body.style.backgroundImage = `url(${data.urls.regular})`
+		document.getElementById("author").textContent = `By: ${data.user.name}`
+    })
+    .catch(err => {
+        document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1623780883690-1de08f271add?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTMyNjE5NDF8&ixlib=rb-4.0.3&q=80&w=1080)`
+        //'http://placehold.it/1000x1000'
+        /**
+         * Challenge: get a URL for a default background image and set it here
+         * 
+         * 1. Change the query in the URL above back to something real
+         * 2. Log the image url to the console (replacing console.log(data) above)
+         * 3. Use that URL as the "default" background image to be used if 
+         *    the promise is ever rejected.
+         */
+    })
+
+
 
 async function getBackgroundImage() {
     console.log('get background image')
-    const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=technology")
-    const data = await res.json()
-    document.body.style.backgroundImage = `url(${data.links.download})`
+    try {
+        const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=technology")
+        const data = await res.json()
+        document.body.style.backgroundImage = `url(${data.links.download})`
+
+
+    } catch {
+        document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1623780883690-1de08f271add?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTMyNjE5NDF8&ixlib=rb-4.0.3&q=80&w=1080)`
+    }
     const creditText = document.createElement("p")
     creditText.textContent = "Image By:" + data.user.name
     document.getElementById("author").appendChild(creditText)
     console.log('data', data)
 }
 
-getBackgroundImage()
+//getBackgroundImage()
 
 /*
 {
