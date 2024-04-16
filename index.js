@@ -15,7 +15,7 @@ async function getBackgroundImage() {
     document.body.style.backgroundImage = `url(${data.links.download})`
     const creditText = document.createElement("h1")
     creditText.textContent = data.user.name
-    document.body.appendChild(creditText)
+    document.getElementById("author").appendChild(creditText)
     console.log('data', data)
 }
 
