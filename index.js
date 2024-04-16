@@ -155,25 +155,24 @@ async function getWeather() {
     
     const res = 
         await fetch(`
-            https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}`)
+            https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`)
     const weather = await res.json()
     const wIconId = weather.weather[0].icon
     const iconURL = `https://openweathermap.org/img/wn/${wIconId}@2x.png`
     const weatherDiv = document.getElementById("weather")
+    const cTemp = weather.main.temp
+    const cLoc = weather.name
     weatherDiv.innerHTML= `
-        <img src="${iconURL}">`
+        <img src="${iconURL}">
+        <p>${cTemp}</p>
+        <p>${cLoc}</p>
+    `
+
     console.log('weather:', weather)
 }
 /**
- * Challenge: Display the weather icon as an <img />
- * inside the <div id="weather">
- * 
- * This site shows an example URL for the icon:
- * https://openweathermap.org/weather-conditions
- * 
- * Note: the weather icon is found instead data.weather, which is
- * an array of weather for that area. You can just access the first
- * item in that array to get the icon ID.
+ * Challenge: Display the temperature (rounded to the nearest degree)
+ * and the city. Don't worry about the layout for now.
  */
 function setupPage() {
     getBackgroundImage()
