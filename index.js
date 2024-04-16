@@ -34,26 +34,39 @@ async function getBackgroundImage() {
 async function getCryptoData() {
     console.log('getCryptoDate')
     const coins = [ 'bitcoin', 'dogecoin', 'ethereum', 'litecoin']
-    const coinData = await Promise.all(coins.map(coin => {
-        const data = getCoinData(coin)
-        return data
-        
-    }));
-    console.log('coinData', coinData)
+    try {
+        const coinData = await Promise.all(coins.map(coin => {
+            const data = getCoinData(coin)
+            return data
+            
+        }));
+        console.log('coinData', coinData)
+
+    } catch (err) {
+        console.error(err)
+    }
+
 }
 
 async function getCoinData(coin) {
-    const res = await fetch(`
-    https://api.coingecko.com/api/v3/coins/${coin}`, 
-    {
-        method:"GET",
-        headers: {
-            accept: 'application/json'
-        }
-    })
-    const data = await res.json()
-    console.log('data', data)
-    return data
+    try {
+        const res = await fetch(`
+        https://api.coingecko.com/api/v3/coins/${coin}`, 
+        {
+            method:"GET",
+            headers: {
+                accept: 'application/json'
+            }
+        })
+        const data = await res.json()
+        console.log('data', data)
+        return data
+
+    } catch (err) {
+        throw err
+
+    }
+
 }
 
 getBackgroundImage()
@@ -61,20 +74,12 @@ getCryptoData()
 //sgetBackgroundImage()
 
 /**
-Challenge: Get current data on a cryptocurrency from the list below
-    * bitcoin
-    * dogecoin
-    * ethereum
-    * litecoin
+ * Challenge: Pull down the cryptocurrency data for dogecoin from the 
+ * CoinGecko API and log it to the console
+ * 
+ * Also add a .catch() method to console any errors that might occur to the console
+ */
 
-1. Search the API docs for an endpoint that will 
-   get you the "current data for a coin"
-   (https://www.coingecko.com/api/documentations/v3#/)
-
-2. Execute a test request from the API docs and skim through 
-   the data for anything that you may find interesting to use
-   in the dashboard
-*/
 
 /*
 [
