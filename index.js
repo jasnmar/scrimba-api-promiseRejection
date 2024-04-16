@@ -70,7 +70,7 @@ async function getCoinData(coin) {
 }
 
 getBackgroundImage()
-getCryptoData()
+document.getElementById("get-crypto").addEventListener('click', getCryptoData)
 //sgetBackgroundImage()
 
 /**
