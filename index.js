@@ -115,7 +115,8 @@ setupPage()
 
 function setupPage() {
     getBackgroundImage()
-    getFormattedTime()
+    updateTime()
+    getLocation()
 }
 
 document.getElementById("get-crypto").addEventListener('click', getCryptoData)
@@ -123,22 +124,27 @@ document.getElementById("get-crypto").addEventListener('click', getCryptoData)
 
 function getFormattedTime() {
     const now = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    console.log(now)
-
-
+    return now
 }
 
+function updateTime() {
+    const time = getFormattedTime()
+    const timeDiv = document.getElementById("time")
+    timeDiv.textContent = time;
+}
+
+setInterval(updateTime, 1000)
 
 /**
- * Challenge: log the current time to the console, formatted
- * like this:
+ * Challenge: Learn how to access the user's coordinates
+ * by using the Geolocation Web API!
  * 
- * 1:30 PM
- * 
- * Use Google and Stack Overflow to find the best way.
- * 
- * Good luck! 👍
+ * Log the user's position to the console.
  */
+function getLocation() {
 
-
+    navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords.latitude, position.coords.longitude);
+    });
+}
 
