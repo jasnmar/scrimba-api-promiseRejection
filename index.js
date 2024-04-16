@@ -1,4 +1,5 @@
-fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
+function sgetBackgroundImage() {
+    fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -7,24 +8,17 @@ fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
     })
     .catch(err => {
         document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1623780883690-1de08f271add?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTMyNjE5NDF8&ixlib=rb-4.0.3&q=80&w=1080)`
-        //'http://placehold.it/1000x1000'
-        /**
-         * Challenge: get a URL for a default background image and set it here
-         * 
-         * 1. Change the query in the URL above back to something real
-         * 2. Log the image url to the console (replacing console.log(data) above)
-         * 3. Use that URL as the "default" background image to be used if 
-         *    the promise is ever rejected.
-         */
     })
-
+}
 
 
 async function getBackgroundImage() {
     console.log('get background image')
+    let res
+    let data
     try {
-        const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=technology")
-        const data = await res.json()
+        res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=technology")
+        data = await res.json()
         document.body.style.backgroundImage = `url(${data.links.download})`
 
 
@@ -37,7 +31,59 @@ async function getBackgroundImage() {
     console.log('data', data)
 }
 
-//getBackgroundImage()
+async function getCryptoData() {
+    console.log('getCryptoDate')
+    const res = await fetch(
+        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,dogecoin,ethereum,litecoin&vs_currencies=usd', 
+        {
+            method:"GET",
+            headers: {
+                accept: 'application/json'
+            }
+        })
+    const data = await res.json()
+    console.log('data', data)
+}
+
+getBackgroundImage()
+getCryptoData()
+//sgetBackgroundImage()
+
+/**
+Challenge: Get current data on a cryptocurrency from the list below
+    * bitcoin
+    * dogecoin
+    * ethereum
+    * litecoin
+
+1. Search the API docs for an endpoint that will 
+   get you the "current data for a coin"
+   (https://www.coingecko.com/api/documentations/v3#/)
+
+2. Execute a test request from the API docs and skim through 
+   the data for anything that you may find interesting to use
+   in the dashboard
+*/
+
+/*
+{
+    "bitcoin": {
+        "usd": 62719
+    },
+    "dogecoin": {
+        "usd": 0.154401
+    },
+    "ethereum": {
+        "usd": 3062.19
+    },
+    "litecoin": {
+        "usd": 78.59
+    }
+}
+*/
+
+
+
 
 /*
 {
