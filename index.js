@@ -163,16 +163,19 @@ async function getWeather() {
     const cTemp = weather.main.temp
     const cLoc = weather.name
     weatherDiv.innerHTML= `
-        <img src="${iconURL}">
-        <p>${cTemp}</p>
-        <p>${cLoc}</p>
+        <div class="weather-top">
+            <img src="${iconURL}">
+            <p class="temp">${cTemp}°</p>
+        </div>
+        <p class="location">${cLoc}</p>
     `
 
     console.log('weather:', weather)
 }
+
 /**
- * Challenge: Display the temperature (rounded to the nearest degree)
- * and the city. Don't worry about the layout for now.
+ * Challenge: Try to lay out the weather similar to how
+ * Momentum does it.
  */
 function setupPage() {
     getBackgroundImage()

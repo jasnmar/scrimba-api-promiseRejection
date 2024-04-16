@@ -52,6 +52,18 @@ p {
     margin: 0 40px;
     font-size: .7rem;
 }
+.weather-top {
+    display:flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.temp {
+    font-size: 2rem;
+}
+.location {
+    text-align: right;
+    margin-right: 10px;
+}
 /*
 Challenge: Set up flexbox so the three elements are
 evenly spread vertically on the screen (don't worry
