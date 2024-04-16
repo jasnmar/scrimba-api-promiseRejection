@@ -84,17 +84,6 @@ async function sgetCryptoData() {
     })
     .then(data => {
         renderCryptoData([data])
-       /**
-         * Challenge: Add the following data points underneath the 
-         * name and icon (1 paragraph each):
-         * 
-         * 1. Current price (data.market_data.current_price.usd)
-         * 2. 24-hour high price (data.market_data.high_24h.usd)
-         * 3. 24-hour low price (data.market_data.low_24h.usd)
-         * 
-         * Feel free to check the response data object for your own currency
-         * if you don't want to use USD.
-         */
     })
     .catch(err => console.error(err))
 }
@@ -110,9 +99,9 @@ function renderCryptoData(dataArray) {
                 <p>${cryptoItem.name}</p>
             </div>
             <div class="crypto-price">
-                <p>Current: ${cryptoItem.market_data.current_price.usd}</p>
-                <p>Day High: ${cryptoItem.market_data.high_24h.usd}</p>
-                <p>Day Low: ${cryptoItem.market_data.low_24h.usd}</p>
+                <p>Current: $${cryptoItem.market_data.current_price.usd}</p>
+                <p>Day High: $${cryptoItem.market_data.high_24h.usd}</p>
+                <p>Day Low: $${cryptoItem.market_data.low_24h.usd}</p>
         </div>
         `
         //image.thumb
@@ -122,31 +111,34 @@ function renderCryptoData(dataArray) {
     cryptoDiv.innerHTML = cryptoHTML
 
 }
+setupPage()
 
-getBackgroundImage()
+function setupPage() {
+    getBackgroundImage()
+    getFormattedTime()
+}
+
 document.getElementById("get-crypto").addEventListener('click', getCryptoData)
 //sgetBackgroundImage()
 
-/*
-<div id="crypto">
-        <div class="crypto-line">
-            <img class="crypto-thumbnail" src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1696501400">
-            <p>Bitcoin</p>
-        </div>
-        
-        <div class="crypto-line">
-            <img class="crypto-thumbnail" src="https://assets.coingecko.com/coins/images/5/thumb/dogecoin.png?1696501409">
-            <p>Dogecoin</p>
-        </div>
-        
-        <div class="crypto-line">
-            <img class="crypto-thumbnail" src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1696501628">
-            <p>Ethereum</p>
-        </div>
-        
-        <div class="crypto-line">
-            <img class="crypto-thumbnail" src="https://assets.coingecko.com/coins/images/2/thumb/litecoin.png?1696501400">
-            <p>Litecoin</p>
-        </div>
-        </div>
-*/
+function getFormattedTime() {
+    const now = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    console.log(now)
+
+
+}
+
+
+/**
+ * Challenge: log the current time to the console, formatted
+ * like this:
+ * 
+ * 1:30 PM
+ * 
+ * Use Google and Stack Overflow to find the best way.
+ * 
+ * Good luck! 👍
+ */
+
+
+
